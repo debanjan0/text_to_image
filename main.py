@@ -94,8 +94,9 @@ def home_page():
 
 @app.route('/hello/',methods=['GET'])
 def hello():
-    # /hello/
-    data_set = {"Massage":"All the values are required."}
+    # /hello/?test=aefd
+    txt = str(request.args.get("test"))
+    data_set = {"Massage":txt}
     
     json_dump = json.dumps(data_set)
     return json_dump
