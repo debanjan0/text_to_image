@@ -1,5 +1,5 @@
 from flask import *
-import json , requests
+import json , requests, time
 import gofile
 from PIL import Image, ImageDraw, ImageFont
 
@@ -109,6 +109,7 @@ def img_page():
     txt = str(request.args.get("text"))
         
     data_set = create_text_2_img(txt)
+    time.sleep(2)
     
     json_dump = json.dumps(data_set)
     return json_dump
