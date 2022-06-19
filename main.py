@@ -105,7 +105,7 @@ def hello():
 @app.route('/img/',methods=['GET'])
 def img_page():
     # /img/?text=any text
-    txt = str(request.args.get("text"))
+    txt = str(request.args("text"))
         
     if None != (txt):
         data_set = create_text_2_img(txt)
