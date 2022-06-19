@@ -92,6 +92,15 @@ def create_text_2_custom_img_bg(message,x,font="antic.ttf",font_size=20,font_col
 def home_page():
     return render_template("index.html")
 
+@app.route('/hello/',methods=['GET'])
+def hello():
+    # /hello/
+    data_set = {"Massage":"All the values are required."}
+    
+    json_dump = json.dumps(data_set)
+    return json_dump
+
+
 
 @app.route('/img/',methods=['GET'])
 def img_page():
