@@ -106,12 +106,9 @@ def hello():
 @app.route('/img/',methods=['GET'])
 def img_page():
     # /img/?text=any text
-    txt = str(request.args("text"))
+    txt = str(request.args.get("text"))
         
-    if None != (txt):
-        data_set = create_text_2_img(txt)
-    else:
-        data_set = {"Massage":"All the values are required."}
+    data_set = create_text_2_img(txt)
     
     json_dump = json.dumps(data_set)
     return json_dump
