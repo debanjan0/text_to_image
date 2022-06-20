@@ -1,7 +1,8 @@
 from flask import *
-import json , requests, time
+import json , requests, time, logging, sys
 import gofile
 from PIL import Image, ImageDraw, ImageFont
+
 
 server = gofile.getServer()
 font="antic.ttf"
@@ -11,6 +12,9 @@ height=70
 font_color="black"
 bg="white"
 app = Flask(__name__)
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 
 def random_img():
