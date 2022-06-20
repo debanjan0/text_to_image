@@ -43,9 +43,9 @@ def custom_photo(x):
     return width, height
 
 
-def create_text_2_img(message,font="antic.ttf",font_size=20,width=200,height=70,font_color="black",bg="white"):
+def create_text_2_img(message,font_size=20,width=200,height=70,font_color="black",bg="white"):
     file_name = "name.png"
-    font = ImageFont.truetype("/Library/fonts/arial.ttf", font_size)
+    font = ImageFont.truetype("/static/arial.ttf", font_size)
     img = Image.new('RGB', (width, height), bg)
     imgDraw = ImageDraw.Draw(img)
     textWidth, textHeight = imgDraw.textsize(message, font=font)
@@ -58,11 +58,11 @@ def create_text_2_img(message,font="antic.ttf",font_size=20,width=200,height=70,
     return upload_response
 
 
-def create_text_2_img_bg(message,font="antic.ttf",font_size=20,font_color="grey"):
+def create_text_2_img_bg(message,font_size=20,font_color="grey"):
     width,height = random_img()
     font_size = int(height/100) * 10
     file_name = "name.png"
-    font = ImageFont.load_default()
+    font = ImageFont.truetype("/static/arial.ttf", font_size)
     img = Image.open("test_img.png")
     imgDraw = ImageDraw.Draw(img)
     textWidth, textHeight = imgDraw.textsize(message, font=font)
@@ -75,11 +75,11 @@ def create_text_2_img_bg(message,font="antic.ttf",font_size=20,font_color="grey"
     return upload_response
 
 
-def create_text_2_custom_img_bg(message,x,font="antic.ttf",font_size=20,font_color="grey"):
+def create_text_2_custom_img_bg(message,x,font_size=20,font_color="grey"):
     width,height = custom_photo(x)
     font_size = int(height/100) * 10
     file_name = "name.png"
-    font = ImageFont.truetype("/Library/fonts/Arial.ttf", font_size)
+    font = ImageFont.truetype("/static/arial.ttf", font_size)
     img = Image.open("test_img.png")
     imgDraw = ImageDraw.Draw(img)
     textWidth, textHeight = imgDraw.textsize(message, font=font)
@@ -130,7 +130,7 @@ def custom_img_page():
     bg = str(request.args.get("bg"))
         
     if None not in (txt, fontsize, fontsize, width, height, bg):
-        data_set = create_text_2_img(txt,font="antic.ttf",font_size=int(fontsize),width=int(width),height=int(height),font_color=fontcolor,bg=bg)
+        data_set = create_text_2_img(txt,font_size=int(fontsize),width=int(width),height=int(height),font_color=fontcolor,bg=bg)
     else:
         data_set = {"Massage":"All the values are required otherwise use the normal method"}
     
