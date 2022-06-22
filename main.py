@@ -275,7 +275,7 @@ def custom_photo_page():
 
 
 @app.route('/quotes',methods=['GET'])
-def home_page():
+def quotes():
     # /quotes/?text=anytext 
     random_quotes_url = "https://zenquotes.io/api/random/403e83af2c2c70b45002437b78b0371915590d4a"
     quotes_response = requests.get(random_quotes_url)    
