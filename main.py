@@ -124,8 +124,8 @@ def quotes_img_bg(x):
     #getting the most common color in the image
     r, g, b = most_common_used_color(width,height,img)
     
-    qfont = ImageFont.truetype("\static\arial.ttf", font_size)
-    afont = ImageFont.truetype("\static\arial.ttf", int(font_size/2))
+    qfont = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
+    afont = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", int(font_size/2))
     
     imgDraw = ImageDraw.Draw(img)
     textWidth, textHeight = imgDraw.textsize(aligned_text, font=qfont)
@@ -150,7 +150,7 @@ def quotes_img_bg(x):
 def create_text_2_img(message,font="antic.ttf",font_size=20,width=200,height=70,font_color="black",bg="white"):
     file_name = "name.png"
     aligned_text , total_line = text_alingment(message, 20)
-    font = ImageFont.truetype("\static\arial.ttf", font_size)
+    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
     img = Image.new('RGB', (width, height), bg)
     imgDraw = ImageDraw.Draw(img)
     textWidth, textHeight = imgDraw.textsize(aligned_text, font=font)
@@ -168,7 +168,7 @@ def create_text_2_img_bg(message,font="antic.ttf",font_size=20,font_color="grey"
     aligned_text , total_line = text_alingment(message, 20)
     font_size = int(height/100) * 10
     file_name = "name.png"
-    font = ImageFont.truetype("/Library/fonts/Arial.ttf", font_size)
+    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
     img = Image.open("test_img.png")
     imgDraw = ImageDraw.Draw(img)
     textWidth, textHeight = imgDraw.textsize(aligned_text, font=font)
@@ -186,7 +186,7 @@ def create_text_2_custom_img_bg(message,x,font="antic.ttf",font_size=20,font_col
     aligned_text , total_line = text_alingment(message, 20)
     font_size = int(height/100) * 10
     file_name = "name.png"
-    font = ImageFont.truetype("/Library/fonts/Arial.ttf", font_size)
+    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
     img = Image.open("test_img.png")
     imgDraw = ImageDraw.Draw(img)
     textWidth, textHeight = imgDraw.textsize(aligned_text, font=font)
