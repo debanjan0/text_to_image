@@ -124,8 +124,8 @@ def quotes_img_bg(x):
     #getting the most common color in the image
     r, g, b = most_common_used_color(width,height,img)
     
-    qfont = ImageFont.truetype("arial.ttf", font_size)
-    afont = ImageFont.truetype("arial.ttf", int(font_size/2))
+    qfont = ImageFont.truetype("\static\arial.ttf", font_size)
+    afont = ImageFont.truetype("\static\arial.ttf", int(font_size/2))
     
     imgDraw = ImageDraw.Draw(img)
     textWidth, textHeight = imgDraw.textsize(aligned_text, font=qfont)
