@@ -262,6 +262,7 @@ def custom_img_page():
     height = str(request.args.get("height")) 
     bg = str(request.args.get("bg"))
     
+    # for making everything dynamic except the text
     if fontsize == "None":
         fontsize = 20
     if fontcolor == "None":
