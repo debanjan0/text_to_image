@@ -262,15 +262,15 @@ def custom_img_page():
     height = str(request.args.get("height")) 
     bg = str(request.args.get("bg"))
     
-    if fontsize == None:
+    if fontsize == "None":
         fontsize = 20
-    if fontcolor == None:
-        fontcolor = 20
-    if width == None:
+    if fontcolor == "None":
+        fontcolor = "black"
+    if width == "None":
         width = 200
-    if height == None:
+    if height == "None":
         height = 70
-    if bg == None:
+    if bg == "None":
         bg = "white"
         
     data_set = create_text_2_img(txt,font="antic.ttf",font_size=int(fontsize),width=int(width),height=int(height),font_color=fontcolor,bg=bg)
