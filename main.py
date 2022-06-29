@@ -1,17 +1,29 @@
 from flask import *
-import json , requests, time, logging, sys
-import gofile
-from PIL import Image, ImageDraw, ImageFont
+import json, requests, time, logging, sys, os
+
+try:
+    import requests
+except ModuleNotFoundError:
+    os.system("pip install requests")
+    import requests
+
+try:
+    from PIL import Image, ImageDraw, ImageFont
+except ModuleNotFoundError:
+    os.system("pip install PIL")
+    from PIL import Image
+
+try:
+    import gofile
+except ModuleNotFoundError:
+    os.system("pip install gofile")
+    import gofile
 
 
-server = gofile.getServer()
-font="antic.ttf"
-font_size=20
-width=200
-height=70
-font_color="black"
-bg="white"
 app = Flask(__name__)
+server = gofile.getServer()
+
+
 
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
@@ -124,8 +136,11 @@ def quotes_img_bg(x):
     #getting the most common color in the image
     r, g, b = most_common_used_color(width,height,img)
     
-    qfont = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
-    afont = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", int(font_size/2))
+    qfont = ImageFont.truetype("arial.ttf", font_size)
+    afont = ImageFont.truetype("arial.ttf", int(font_size/2))
+    
+    # qfont = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
+    # afont = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", int(font_size/2))
     
     imgDraw = ImageDraw.Draw(img)
     textWidth, textHeight = imgDraw.textsize(aligned_text, font=qfont)
@@ -142,15 +157,16 @@ def quotes_img_bg(x):
     imgDraw.text((20, author_yText), author, font=afont, fill=(int(r), int(g), int(b)), align ="left")
 
     img.save(file_name)
-    # img.show()
     upload_response = gofile.uploadFile(file_name)
+    
     return upload_response
 
 
 def create_text_2_img(message,font="antic.ttf",font_size=20,width=200,height=70,font_color="black",bg="white"):
     file_name = "name.png"
     aligned_text , total_line = text_alingment(message, 20)
-    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
+    font = ImageFont.truetype("\static\arial.ttf", font_size)
+    # font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
     img = Image.new('RGB', (width, height), bg)
     imgDraw = ImageDraw.Draw(img)
     textWidth, textHeight = imgDraw.textsize(aligned_text, font=font)
@@ -168,7 +184,8 @@ def create_text_2_img_bg(message,font="antic.ttf",font_size=20,font_color="grey"
     aligned_text , total_line = text_alingment(message, 20)
     font_size = int(height/100) * 10
     file_name = "name.png"
-    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
+    font = ImageFont.truetype("/Library/fonts/Arial.ttf", font_size)
+    # font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
     img = Image.open("test_img.png")
     imgDraw = ImageDraw.Draw(img)
     textWidth, textHeight = imgDraw.textsize(aligned_text, font=font)
@@ -186,7 +203,8 @@ def create_text_2_custom_img_bg(message,x,font="antic.ttf",font_size=20,font_col
     aligned_text , total_line = text_alingment(message, 20)
     font_size = int(height/100) * 10
     file_name = "name.png"
-    font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
+    font = ImageFont.truetype("/Library/fonts/Arial.ttf", font_size)
+    # font = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", font_size)
     img = Image.open("test_img.png")
     imgDraw = ImageDraw.Draw(img)
     textWidth, textHeight = imgDraw.textsize(aligned_text, font=font)
@@ -211,7 +229,7 @@ def home_page():
     return render_template("index.html")
 
 
-@app.route('/hello/',methods=['GET'])
+@app.route('/hello_having_fun/',methods=['GET'])
 def hello():
     # /hello/?test=aefd
     txt = str(request.args.get("test"))
@@ -243,11 +261,19 @@ def custom_img_page():
     width = str(request.args.get("width")) 
     height = str(request.args.get("height")) 
     bg = str(request.args.get("bg"))
+    
+    if fontsize is None:
+        fontsize = 20
+    if fontcolor is None:
+        fontcolor = 20
+    if width is None:
+        width = 200
+    if height is None:
+        height = 70
+    if bg is None:
+        bg = "white"
         
-    if None not in (txt, fontsize, fontsize, width, height, bg):
-        data_set = create_text_2_img(txt,font="antic.ttf",font_size=int(fontsize),width=int(width),height=int(height),font_color=fontcolor,bg=bg)
-    else:
-        data_set = {"Massage":"All the values are required otherwise use the normal method"}
+    data_set = create_text_2_img(txt,font="antic.ttf",font_size=int(fontsize),width=int(width),height=int(height),font_color=fontcolor,bg=bg)
     
     json_dump = json.dumps(data_set)
     return json_dump
