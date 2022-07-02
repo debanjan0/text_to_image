@@ -29,11 +29,11 @@ Get the text with custom size & background color ?
 |Feild|Requeird|Val|
 |-----|--------|---|
 |text|yes|the text you want to convert into img|
-|fontsize|yes|Font size of the text|
-|fontcolor|yes|Font color of the text|
-|width|yes|The width of the image|
-|height|yes|The heigth of the image|
-|bg|yes|The background color|
+|fontsize|no|Font size of the text|
+|fontcolor|no|Font color of the text|
+|width|no|The width of the image|
+|height|no|The heigth of the image|
+|bg|no|The background color|
 
 Exmaple :-
 ```https://texttoimg.herokuapp.com/custom-img/?text=any text&fontsize=20&fontcolor=black&width=200&height=70&bg=white```
