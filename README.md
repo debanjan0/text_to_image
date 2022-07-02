@@ -9,7 +9,7 @@ The website https://texttoimg.herokuapp.com/
 
 ## Documentation
 
-Get the text with simple white background color ?
+**Get the text with simple white background color ?**
 
 ```https://texttoimg.herokuapp.com/img/?text=text```
 
@@ -21,7 +21,7 @@ Exmaple :-
 ```https://texttoimg.herokuapp.com/img/?text=this is an exmaple```
 
 
-Get the text with custom size & background color ?
+**Get the text with custom size & background color ?**
 
 ```https://texttoimg.herokuapp.com/custom-img/?text=text&fontsize=value&fontcolor=value&width=value&height=value&bg=value```
 
@@ -39,7 +39,7 @@ Exmaple :-
 ```https://texttoimg.herokuapp.com/custom-img/?text=any text&fontsize=20&fontcolor=black&width=200&height=70&bg=white```
 
 
-Get the text with a random backgroung image ?
+**Get the text with a random backgroung image ?**
 
 ```https://texttoimg.herokuapp.com/photo/?text=text```
 
@@ -51,7 +51,7 @@ Get the text with a random backgroung image ?
 Exmaple :-
 ```https://texttoimg.herokuapp.com/photo/?text=any text```
 
-Get the text with a specific backgroung image ?
+**Get the text with a specific backgroung image ?**
 
 ```https://texttoimg.herokuapp.com/custom-photo/?text=text&bg=value```
 
